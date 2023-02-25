@@ -52,7 +52,7 @@ func DFS[K comparable, T any](g Graph[K, T], start K, visit func(K) bool) error 
 
 		stack = stack[:len(stack)-1]
 
-		if _, ok := visited[currentHash]; !ok {
+		if !visited[currentHash] {
 			// Stop traversing the graph if the visit function returns true.
 			if stop := visit(currentHash); stop {
 				break
@@ -125,7 +125,7 @@ func BFS[K comparable, T any](g Graph[K, T], start K, visit func(K) bool) error 
 		}
 
 		for adjacency := range adjacencyMap[currentHash] {
-			if _, ok := visited[adjacency]; !ok {
+			if !visited[adjacency] {
 				visited[adjacency] = true
 				queue = append(queue, adjacency)
 			}
